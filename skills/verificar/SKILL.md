@@ -1,6 +1,8 @@
 ---
 name: verificar
 description: Corre las verificaciones que tocan según el cambio (nada, solo el módulo o suite completa) y reporta resultados reales. Usar antes de dar algo por terminado o de entregarlo a auditoría.
+metadata:
+  origen: kit-agentes
 ---
 
 # Verificar

@@ -98,6 +98,13 @@ for (const skill of readdirSync(join(KIT, 'skills'))) {
         const destino = join(DIR, base, skill);
         // Si es un enlace (p. ej. .claude/skills → .agents/skills), ya queda al día con el original.
         if (existsSync(destino) && lstatSync(destino).isSymbolicLink()) continue;
+        // Una skill propia del proyecto con el mismo nombre no se pisa.
+        const suya = join(destino, 'SKILL.md');
+        if (existsSync(suya) && !readFileSync(suya, 'utf8').includes('origen: kit-agentes')) {
+            log('se queda', destino);
+            avisos.push(`${rel(destino)} es una skill propia del proyecto con el mismo nombre que una del kit; no se tocó.`);
+            continue;
+        }
         log(existsSync(destino) ? 'actualiza' : 'crea', destino);
         if (!ensayo) cpSync(join(KIT, 'skills', skill), destino, { recursive: true, force: true });
     }
@@ -105,6 +112,9 @@ for (const skill of readdirSync(join(KIT, 'skills'))) {
 
 // ---------- 2. AGENTS.md: única fuente de reglas ----------
 const agents = join(DIR, 'AGENTS.md');
+// Un proyecto con reglas propias que aún no se alinea: solo se avisa, no se le crean archivos encima.
+const sinAlinear = existsSync(agents) && !readFileSync(agents, 'utf8').includes(INICIO);
+const eraNuevo = !existsSync(agents);
 if (!existsSync(agents)) {
     const base = plantilla('agents-proyecto.md');
     const linea = base.split('\n').find((l) => l.startsWith(HUECO));
@@ -126,60 +136,65 @@ if (!existsSync(agents)) {
     }
 }
 
-// ---------- 3. puertas de entrada de cada agente ----------
-crearSiFalta('CLAUDE.md', `# ${NOMBRE}\n\n` + plantilla('claude.md'));
-crearSiFalta(
-    'GEMINI.md',
-    plantilla('gemini.md') +
-        '- Comandos: `/antes-de-editar`, `/verificar` y `/traspaso` (`.gemini/commands/`). Usa `/traspaso` al terminar o cuando se acabe tu ventana de uso.\n',
-);
-crearSiFalta('.github/copilot-instructions.md', plantilla('copilot.md'));
-for (const archivo of readdirSync(join(KIT, 'plantillas', 'gemini-commands'))) {
-    crearSiFalta(`.gemini/commands/${archivo}`, plantilla(`gemini-commands/${archivo}`));
-}
-for (const p of ['CLAUDE.md', 'GEMINI.md', '.github/copilot-instructions.md']) {
-    const ruta = join(DIR, p);
-    if (existsSync(ruta) && !readFileSync(ruta, 'utf8').includes('AGENTS.md')) {
-        avisos.push(`${p} no menciona AGENTS.md: puede tener reglas copiadas que ya no coinciden.`);
+if (sinAlinear) {
+    console.log('\n(No se crean CLAUDE.md, GEMINI.md, docs ni scripts hasta alinear AGENTS.md.)\n');
+} else {
+    // ---------- 3. puertas de entrada de cada agente ----------
+    crearSiFalta('CLAUDE.md', `# ${NOMBRE}\n\n` + plantilla('claude.md'));
+    crearSiFalta(
+        'GEMINI.md',
+        plantilla('gemini.md') +
+            '- Comandos: `/antes-de-editar`, `/verificar` y `/traspaso` (`.gemini/commands/`). Usa `/traspaso` al terminar o cuando se acabe tu ventana de uso.\n',
+    );
+    crearSiFalta('.github/copilot-instructions.md', plantilla('copilot.md'));
+    for (const archivo of readdirSync(join(KIT, 'plantillas', 'gemini-commands'))) {
+        crearSiFalta(`.gemini/commands/${archivo}`, plantilla(`gemini-commands/${archivo}`));
     }
-}
+    for (const p of ['CLAUDE.md', 'GEMINI.md', '.github/copilot-instructions.md']) {
+        const ruta = join(DIR, p);
+        if (existsSync(ruta) && !readFileSync(ruta, 'utf8').includes('AGENTS.md')) {
+            avisos.push(`${p} no menciona AGENTS.md: puede tener reglas copiadas que ya no coinciden.`);
+        }
+    }
 
-// ---------- 4. continuidad: estado, bitácora, arquitectura ----------
-crearSiFalta('docs/estado.md', plantilla('estado.md').replace('AAAA-MM-DD · quién', `${HOY} · kit-agentes`));
-crearSiFalta(
-    'docs/bitacora-ia.md',
-    plantilla('cabecera-bitacora.md').trimEnd() +
-        `\n\n## ${HOY} · kit-agentes · Proyecto organizado para varios agentes\n` +
-        '- **Hecho:** `AGENTS.md` (única fuente de reglas, con la «Metodología común»), `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `docs/estado.md`, esta bitácora, el script de la bitácora y las skills del kit.\n' +
-        '- **Verificado:** solo documentación: sin pruebas.\n' +
-        '- **Falta:** llenar las secciones del proyecto en `AGENTS.md` y el primer `docs/estado.md` real.\n' +
-        '- **No asumir:** que `AGENTS.md` ya describe el proyecto: es la plantilla.\n' +
-        '- **Ponytail:** Markdown y un script sin dependencias.\n',
-);
-crearSiFalta(
-    'docs/arquitectura.md',
-    `# Arquitectura de ${NOMBRE}\n\nMapa del proyecto y decisiones vigentes. Se actualiza en la misma sesión en que cambia la estructura.\n\n## Qué es\n\n## Carpetas\n\n## Flujos clave\n\n## Decisiones vigentes\n`,
-);
+    // ---------- 4. continuidad: estado, bitácora, arquitectura ----------
+    crearSiFalta('docs/estado.md', plantilla('estado.md').replace('AAAA-MM-DD · quién', `${HOY} · kit-agentes`));
+    crearSiFalta(
+        'docs/bitacora-ia.md',
+        plantilla('cabecera-bitacora.md').trimEnd() +
+            `\n\n## ${HOY} · kit-agentes · Proyecto organizado para varios agentes\n` +
+            '- **Hecho:** `AGENTS.md` (única fuente de reglas, con la «Metodología común»), `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `docs/estado.md`, esta bitácora, el script de la bitácora y las skills del kit.\n' +
+            '- **Verificado:** solo documentación: sin pruebas.\n' +
+            '- **Falta:** llenar las secciones del proyecto en `AGENTS.md` y el primer `docs/estado.md` real.\n' +
+            '- **No asumir:** que `AGENTS.md` ya describe el proyecto: es la plantilla.\n' +
+            '- **Ponytail:** Markdown y un script sin dependencias.\n',
+    );
+    // En un proyecto que ya existía, el mapa puede vivir en otro archivo: solo se crea en proyectos nuevos.
+    if (eraNuevo) crearSiFalta(
+        'docs/arquitectura.md',
+        `# Arquitectura de ${NOMBRE}\n\nMapa del proyecto y decisiones vigentes. Se actualiza en la misma sesión en que cambia la estructura.\n\n## Qué es\n\n## Carpetas\n\n## Flujos clave\n\n## Decisiones vigentes\n`,
+    );
 
-// ---------- 5. script de la bitácora ----------
-const script = PYTHON ? 'bitacora.py' : 'bitacora.mjs';
-const destinoScript = join(DIR, 'scripts', script);
-const delKit = readFileSync(join(KIT, 'scripts', script), 'utf8');
-if (!existsSync(destinoScript)) escribir(destinoScript, delKit, 'crea');
-else if (readFileSync(destinoScript, 'utf8') === delKit) log('al día', destinoScript);
-else log('se queda', destinoScript), avisos.push(`scripts/${script} es distinto al del kit (quizá ajustado a mano); no se tocó.`);
+    // ---------- 5. script de la bitácora ----------
+    const script = PYTHON ? 'bitacora.py' : 'bitacora.mjs';
+    const destinoScript = join(DIR, 'scripts', script);
+    const delKit = readFileSync(join(KIT, 'scripts', script), 'utf8');
+    if (!existsSync(destinoScript)) escribir(destinoScript, delKit, 'crea');
+    else if (readFileSync(destinoScript, 'utf8') === delKit) log('al día', destinoScript);
+    else log('se queda', destinoScript), avisos.push(`scripts/${script} es distinto al del kit (quizá ajustado a mano); no se tocó.`);
 
-const pkg = join(DIR, 'package.json');
-if (existsSync(pkg) && !PYTHON) {
-    const texto = readFileSync(pkg, 'utf8');
-    const datos = JSON.parse(texto);
-    datos.scripts ??= {};
-    if (datos.scripts['bitacora:check']) log('al día', pkg);
-    else {
-        datos.scripts['bitacora:check'] = 'node scripts/bitacora.mjs check';
-        datos.scripts['bitacora:archivar'] = 'node scripts/bitacora.mjs archive';
-        const sangria = texto.match(/\n( +)"/)?.[1].length ?? 2;
-        escribir(pkg, JSON.stringify(datos, null, sangria) + '\n', 'actualiza');
+    const pkg = join(DIR, 'package.json');
+    if (existsSync(pkg) && !PYTHON) {
+        const texto = readFileSync(pkg, 'utf8');
+        const datos = JSON.parse(texto);
+        datos.scripts ??= {};
+        if (datos.scripts['bitacora:check']) log('al día', pkg);
+        else {
+            datos.scripts['bitacora:check'] = 'node scripts/bitacora.mjs check';
+            datos.scripts['bitacora:archivar'] = 'node scripts/bitacora.mjs archive';
+            const sangria = texto.match(/\n( +)"/)?.[1].length ?? 2;
+            escribir(pkg, JSON.stringify(datos, null, sangria) + '\n', 'actualiza');
+        }
     }
 }
 

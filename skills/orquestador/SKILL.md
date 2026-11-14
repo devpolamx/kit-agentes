@@ -1,6 +1,8 @@
 ---
 name: orquestador
 description: Para Claude como orquestador. Usar al planear una tarea o fase, escribir un brief para Gemini, Codex o Copilot, auditar lo que entregó un ejecutor, decidir si se corrige o se pide un ajuste, o avanzar al siguiente paso.
+metadata:
+  origen: kit-agentes
 ---
 
 # Orquestador

@@ -1,6 +1,8 @@
 ---
 name: antes-de-editar
 description: Reconocimiento obligatorio antes de tocar código - leer, buscar usos, trazar el flujo y decidir el alcance de pruebas. Usar al recibir una tarea o un brief, antes de editar cualquier archivo.
+metadata:
+  origen: kit-agentes
 ---
 
 # Antes de editar

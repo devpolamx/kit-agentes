@@ -54,7 +54,7 @@ Claude llena las secciones propias del proyecto (comandos, reglas de negocio, zo
 
 ### Proyectos que ya existen
 
-Es seguro correrlo en un proyecto con reglas propias: **crea lo que falta y no toca lo que ya escribiste** (estado, bitácora, `CLAUDE.md`, `GEMINI.md`). Si tu `AGENTS.md` todavía no tiene el bloque de metodología, te avisa. Entonces pide a Claude: «alinea este proyecto con la skill organizar-proyecto-ia». Junta las reglas repetidas en `AGENTS.md` sin borrar ninguna.
+Es seguro correrlo en un proyecto con reglas propias: **crea lo que falta y no toca lo que ya escribiste** (estado, bitácora, `CLAUDE.md`, `GEMINI.md`). Tampoco pisa una skill propia del proyecto que se llame igual que una del kit. Si tu `AGENTS.md` todavía no tiene el bloque de metodología, te avisa. Entonces pide a Claude: «alinea este proyecto con la skill organizar-proyecto-ia». Junta las reglas repetidas en `AGENTS.md` sin borrar ninguna.
 
 ### Actualizar
 

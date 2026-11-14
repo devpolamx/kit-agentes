@@ -1,6 +1,8 @@
 ---
 name: organizar-proyecto-ia
 description: Organiza un proyecto, nuevo o existente, para trabajar con varios agentes (Claude Code orquesta; Gemini, Codex y Copilot ejecutan) con AGENTS.md como única fuente de reglas, docs/estado.md, bitácora con tope y briefs. Úsala al crear un proyecto, al alinear uno existente o cuando el dueño pida organizarlo «como los demás».
+metadata:
+  origen: kit-agentes
 ---
 
 # Organizar un proyecto para varios agentes

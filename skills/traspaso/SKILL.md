@@ -1,6 +1,8 @@
 ---
 name: traspaso
 description: Cierra la sesión para que otro agente continúe sin adivinar - verificación, bitácora, docs/estado.md y revisión del tope de la bitácora. Usar al terminar una tarea o cuando se acaba la ventana de uso.
+metadata:
+  origen: kit-agentes
 ---
 
 # Traspaso
