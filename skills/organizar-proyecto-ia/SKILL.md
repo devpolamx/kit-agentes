@@ -9,7 +9,7 @@ metadata:
 
 **Objetivo:** que cualquier agente sepa qué reglas seguir, **dónde estamos** y qué sigue, y pueda continuar aunque quien estaba no esté disponible. Todo en Markdown dentro del repositorio: sin bases de datos de memoria ni servicios.
 
-Todo sale del kit público **`devpolamx/kit-agentes`** (plantillas, scripts y las skills `orquestador`, `antes-de-editar`, `verificar` y `traspaso`). Desde la carpeta del proyecto:
+Todo sale del kit público **`devpolamx/kit-agentes`** (plantillas, scripts y las skills `orquestador`, `antes-de-editar`, `verificar`, `traspaso` y `mx-privacy-compliance`). Desde la carpeta del proyecto:
 
 ```
 npx github:devpolamx/kit-agentes instalar --stack laravel-react   # o astro, django, ninguno

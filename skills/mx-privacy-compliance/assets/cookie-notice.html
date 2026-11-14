@@ -1,0 +1,108 @@
+<!--
+  Aviso de cookies NO bloqueante, framework-agnóstico (HTML/CSS/JS vainilla, cero dependencias).
+  No detiene Analytics/Meta Pixel ni ninguna otra herramienta — solo informa, como pide la LFPDPPP
+  para datos no sensibles. Ver SKILL.md sección 3 para la justificación legal.
+
+  Cómo adaptarlo a un sitio nuevo:
+  1. Pega el <aside>, el <script> y el <style> donde cargues el resto del sitio (o un include/partial).
+  2. Reemplaza las 4 variables CSS (--surface, --surface-border, --text-muted, --accent) por las que
+     ya tenga el sitio destino — NO inventes una paleta nueva. Si el sitio no usa variables CSS,
+     sustitúyelas por colores fijos equivalentes (ver los valores de respaldo en los comentarios).
+  3. Cambia el texto del <p> y el enlace de /aviso-de-privacidad a la URL real del sitio.
+  4. Cambia la lista de herramientas (Google Analytics, Meta Pixel, ...) por las que el sitio use de verdad.
+
+  Accesibilidad (no la rompas al adaptar):
+  - Es un <aside aria-label>, no un <dialog> — no es modal, no necesita trampa de foco ni bloquear scroll.
+  - El botón es un <button> nativo con texto claro ("Entendido"), no un ícono sin etiqueta.
+  - El cierre se recuerda en localStorage envuelto en try/catch — si el navegador lo bloquea, el aviso
+    simplemente se muestra siempre en vez de romper la página.
+-->
+
+<aside class="cookie-notice" id="cookie-notice" aria-label="Aviso de cookies" hidden>
+  <div class="cookie-notice-inner">
+    <p>
+      Usamos cookies propias y de terceros (Google Analytics, Meta Pixel) para medir visitas y
+      campañas publicitarias. Puedes consultar el detalle en nuestro
+      <a href="/aviso-de-privacidad">Aviso de Privacidad</a>.
+    </p>
+    <button type="button" id="cookie-notice-ok" class="cookie-notice-btn">Entendido</button>
+  </div>
+</aside>
+
+<script>
+  (function () {
+    var KEY = 'cookie-notice-dismissed';
+    var el = document.getElementById('cookie-notice');
+    var btn = document.getElementById('cookie-notice-ok');
+    if (!el || !btn) return;
+    try {
+      if (!localStorage.getItem(KEY)) el.hidden = false;
+    } catch (e) {
+      el.hidden = false; // sin localStorage, se muestra siempre (no hay forma de recordar)
+    }
+    btn.addEventListener('click', function () {
+      el.hidden = true;
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    });
+  })();
+</script>
+
+<style>
+  .cookie-notice {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    background: var(--surface, #ffffff);
+    border-top: 1px solid var(--surface-border, #e2e2e2);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .cookie-notice-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+
+  .cookie-notice p {
+    margin: 0;
+    color: var(--text-muted, #555555);
+    font-size: 0.92rem;
+    flex: 1 1 320px;
+  }
+
+  .cookie-notice a {
+    color: var(--accent, #2563eb);
+    font-weight: 600;
+  }
+
+  .cookie-notice-btn {
+    flex: none;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    background: var(--accent, #2563eb);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 480px) {
+    .cookie-notice-inner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .cookie-notice-btn {
+      width: 100%;
+    }
+  }
+</style>

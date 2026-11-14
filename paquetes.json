@@ -176,7 +176,6 @@
     ],
     "_propias_de_un_proyecto": [
         "django-backend, django-templates-htmx, postgres-performance (ToCheckin): convenciones del proyecto, no se reparten",
-        "clinik-ui (tuClinik y tuSalud)",
-        "mx-privacy-compliance (ToCheckin): candidata a pasar al kit si es tuya"
+        "clinik-ui (tuClinik y tuSalud)"
     ]
 }
