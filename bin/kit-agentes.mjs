@@ -152,7 +152,8 @@ if (sinAlinear) {
     }
     for (const p of ['CLAUDE.md', 'GEMINI.md', '.github/copilot-instructions.md']) {
         const ruta = join(DIR, p);
-        if (existsSync(ruta) && !readFileSync(ruta, 'utf8').includes('AGENTS.md')) {
+        const enlace = existsSync(ruta) && lstatSync(ruta).isSymbolicLink(); // p. ej. CLAUDE.md → AGENTS.md
+        if (existsSync(ruta) && !enlace && !readFileSync(ruta, 'utf8').includes('AGENTS.md')) {
             avisos.push(`${p} no menciona AGENTS.md: puede tener reglas copiadas que ya no coinciden.`);
         }
     }
