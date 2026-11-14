@@ -1,0 +1,6 @@
+description = "Reconocimiento antes de tocar código: leer, buscar usos, trazar el flujo y decidir el alcance de pruebas"
+prompt = """
+Tarea o contexto: {{args}}
+
+Sigue al pie de la letra `.agents/skills/antes-de-editar/SKILL.md` (las reglas del proyecto están en `AGENTS.md`). Reporta solo resultados reales.
+"""

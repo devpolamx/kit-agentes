@@ -1,0 +1,6 @@
+description = "Cierra la sesión: verificación, bitácora, docs/estado.md y tope de la bitácora"
+prompt = """
+Tarea o contexto: {{args}}
+
+Sigue al pie de la letra `.agents/skills/traspaso/SKILL.md` (las reglas del proyecto están en `AGENTS.md`). Reporta solo resultados reales.
+"""

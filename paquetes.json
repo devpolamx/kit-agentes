@@ -1,0 +1,47 @@
+{
+    "_leeme": "Skills de terceros por paquete. No se copian a este repo: el instalador las baja de su fuente con `npx skills add <fuente> --skill <nombre>`. Cada una conserva la licencia de su autor.",
+    "comun": [
+        { "skill": "ponytail", "fuente": "DietrichGebert/ponytail" },
+        { "skill": "ponytail-review", "fuente": "DietrichGebert/ponytail" },
+        { "skill": "ponytail-audit", "fuente": "DietrichGebert/ponytail" },
+        { "skill": "ponytail-debt", "fuente": "DietrichGebert/ponytail" },
+        { "skill": "writing-for-interfaces", "fuente": "andrewgleave/skills" },
+        { "skill": "security-review", "fuente": "affaan-m/everything-claude-code" },
+        { "skill": "verification-loop", "fuente": "affaan-m/everything-claude-code" }
+    ],
+    "laravel-react": [
+        { "skill": "laravel-patterns", "fuente": "affaan-m/everything-claude-code" },
+        { "skill": "laravel-security", "fuente": "affaan-m/everything-claude-code" },
+        { "skill": "laravel-tdd", "fuente": "affaan-m/everything-claude-code" },
+        { "skill": "laravel-verification", "fuente": "affaan-m/everything-claude-code" },
+        { "skill": "database-migrations", "fuente": "affaan-m/everything-claude-code" },
+        { "skill": "laravel-specialist", "fuente": "jeffallan/claude-skills" },
+        { "skill": "php-pro", "fuente": "jeffallan/claude-skills" },
+        { "skill": "react-patterns", "fuente": "affaan-m/everything-claude-code" },
+        { "skill": "react-performance", "fuente": "affaan-m/everything-claude-code" },
+        { "skill": "vercel-react-best-practices", "fuente": "vercel-labs/agent-skills" },
+        { "skill": "vercel-composition-patterns", "fuente": "vercel-labs/agent-skills" },
+        { "skill": "typescript-advanced-types", "fuente": "wshobson/agents" },
+        { "skill": "tailwind-css-patterns", "fuente": "giuseppe-trisciuoglio/developer-kit" },
+        { "skill": "tailwind-v4-shadcn", "fuente": "secondsky/claude-skills" },
+        { "skill": "shadcn", "fuente": "shadcn/ui" },
+        { "skill": "vite", "fuente": "antfu/skills" },
+        { "skill": "frontend-design", "fuente": "anthropics/skills" },
+        { "skill": "accessibility", "fuente": "addyosmani/web-quality-skills" }
+    ],
+    "astro": [
+        { "skill": "seo", "fuente": "addyosmani/web-quality-skills" },
+        { "skill": "accessibility", "fuente": "addyosmani/web-quality-skills" },
+        { "skill": "frontend-design", "fuente": "anthropics/skills" },
+        { "skill": "vite", "fuente": "antfu/skills" },
+        { "skill": "typescript-advanced-types", "fuente": "wshobson/agents" },
+        { "skill": "nodejs-best-practices", "fuente": "sickn33/antigravity-awesome-skills" }
+    ],
+    "django": [],
+    "_fuente_por_confirmar": [
+        "animate", "baseline-ui", "design-taste-frontend", "emil-design-eng", "fixing-accessibility",
+        "fixing-metadata", "fixing-motion-performance", "impeccable", "improve-ui", "taste-skill",
+        "ui-skill", "ui-skills-root", "django-backend", "django-templates-htmx", "postgres-performance",
+        "mx-privacy-compliance"
+    ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "kit-agentes",
+  "version": "1.0.0",
+  "description": "Organiza un proyecto para trabajar con varios agentes de IA (Claude Code, Gemini, Codex, Copilot): reglas en un solo AGENTS.md, estado, bitácora con tope y skills compartidas.",
+  "type": "module",
+  "bin": {
+    "kit-agentes": "bin/kit-agentes.mjs"
+  },
+  "files": ["bin", "plantillas", "scripts", "skills", "paquetes.json"],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": ["agents", "claude-code", "gemini", "codex", "copilot", "skills", "agents-md"],
+  "author": "devpolamx",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devpolamx/kit-agentes.git"
+  }
+}

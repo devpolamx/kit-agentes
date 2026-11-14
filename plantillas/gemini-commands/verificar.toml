@@ -1,0 +1,6 @@
+description = "Corre las verificaciones que tocan según el cambio y reporta resultados reales"
+prompt = """
+Tarea o contexto: {{args}}
+
+Sigue al pie de la letra `.agents/skills/verificar/SKILL.md` (las reglas del proyecto están en `AGENTS.md`). Reporta solo resultados reales.
+"""
