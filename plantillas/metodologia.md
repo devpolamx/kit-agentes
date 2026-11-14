@@ -1,4 +1,4 @@
-<!-- metodologia-comun:inicio · v2026-11-13c · igual en todos los proyectos; no se edita aquí: se cambia en github.com/devpolamx/kit-agentes y se trae con `npx github:devpolamx/kit-agentes actualizar` -->
+<!-- metodologia-comun:inicio · v2026-11-13d · igual en todos los proyectos; no se edita aquí: se cambia en github.com/devpolamx/kit-agentes y se trae con `npx github:devpolamx/kit-agentes actualizar` -->
 ## Metodología común (todos los agentes)
 
 Este archivo es la **única fuente de reglas** del proyecto. `CLAUDE.md` y `GEMINI.md` lo importan y `.github/copilot-instructions.md` apunta aquí: una regla nueva se escribe **solo aquí**, nunca en copias.
@@ -34,6 +34,7 @@ Este archivo es la **única fuente de reglas** del proyecto. `CLAUDE.md` y `GEMI
 - **Ponytail:** la mejor línea es la que no se escribe. ¿Hace falta? → ¿ya existe aquí? → ¿lo da el lenguaje o el framework? → ¿una dependencia ya instalada? → mínimo código. Arreglos en la causa raíz, sin abstracciones ni dependencias que nadie pidió. **Nunca** recortes validación, autorización, seguridad ni accesibilidad.
 - Con lógica (reglas, permisos, cálculos, estados): primero la prueba, comprueba que falla por la razón correcta y luego implementa.
 - Un problema fuera de tu tarea se **reporta**, no se arregla en silencio ni se mezcla.
+- Las skills de terceros son guías generales: **si una contradice este archivo** (herramientas, comandos, estructura, estilo), **manda este archivo** y las skills propias del proyecto.
 - No instales dependencias ni hagas `commit` o `push` salvo que el dueño o el brief lo pidan (las excepciones de este proyecto están abajo).
 - **Codificación:** UTF-8 sin BOM y finales LF. En Windows no escribas archivos con `>`, `Out-File` ni `Set-Content` de PowerShell 5.1: usa la herramienta de edición. No reescribas archivos enteros solo para «normalizar».
 

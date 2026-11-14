@@ -75,7 +75,9 @@ Las skills de otros autores **no se copian a este repositorio**: `paquetes.json`
 | `comun` (siempre) | ponytail (`ponytail`, `-review`, `-audit`, `-debt`), `writing-for-interfaces`, `security-review`, `verification-loop` |
 | `laravel-react` | Laravel (patrones, seguridad, TDD, verificación, migraciones, especialista, PHP), React (incluye las de Vercel), TypeScript, Tailwind v4 / shadcn, Vite, diseño de interfaz, accesibilidad |
 | `astro` | SEO, accesibilidad, diseño de interfaz, Vite, TypeScript, Node |
-| `django` | Vacío por ahora |
+| `django` | Seguridad, TDD con pytest-django y factory_boy, Celery y migraciones seguras (everything-claude-code); antipatrones de Python, diseño de tablas en PostgreSQL y `uv` (wshobson/agents) |
+
+Si una skill de terceros choca con `AGENTS.md` (por ejemplo, recomienda `black` y el proyecto usa `ruff`), manda `AGENTS.md`: la metodología común lo dice.
 
 Las que están en `_fuente_por_confirmar` se usan en algunos proyectos, pero todavía no se confirma de qué repositorio salen; no se instalan solas.
 
