@@ -104,6 +104,44 @@
             "fuente": "addyosmani/web-quality-skills"
         }
     ],
+    "laravel-blade": [
+        {
+            "skill": "laravel-patterns",
+            "fuente": "affaan-m/everything-claude-code"
+        },
+        {
+            "skill": "laravel-security",
+            "fuente": "affaan-m/everything-claude-code"
+        },
+        {
+            "skill": "laravel-tdd",
+            "fuente": "affaan-m/everything-claude-code"
+        },
+        {
+            "skill": "laravel-verification",
+            "fuente": "affaan-m/everything-claude-code"
+        },
+        {
+            "skill": "database-migrations",
+            "fuente": "affaan-m/everything-claude-code"
+        },
+        {
+            "skill": "laravel-specialist",
+            "fuente": "jeffallan/claude-skills"
+        },
+        {
+            "skill": "php-pro",
+            "fuente": "jeffallan/claude-skills"
+        },
+        {
+            "skill": "frontend-design",
+            "fuente": "anthropics/skills"
+        },
+        {
+            "skill": "accessibility",
+            "fuente": "addyosmani/web-quality-skills"
+        }
+    ],
     "astro": [
         {
             "skill": "seo",

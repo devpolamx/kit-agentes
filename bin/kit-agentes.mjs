@@ -14,7 +14,7 @@ import { basename, dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const KIT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const STACKS = ['laravel-react', 'astro', 'django', 'ninguno'];
+const STACKS = ['laravel-react', 'laravel-blade', 'astro', 'django', 'ninguno'];
 const INICIO = '<!-- metodologia-comun:inicio';
 const FIN = '<!-- metodologia-comun:fin -->';
 const HUECO = '<!-- Aquí va, tal cual, el bloque de plantillas/metodologia.md';
@@ -62,7 +62,12 @@ const avisos = [];
 
 function adivinarStack() {
     const hay = (f) => existsSync(join(DIR, f));
-    if (hay('artisan')) return 'laravel-react';
+    if (hay('artisan')) {
+        // Blade/Livewire si no hay Inertia ni React en el proyecto.
+        const composer = hay('composer.json') ? readFileSync(join(DIR, 'composer.json'), 'utf8') : '';
+        const pkg = hay('package.json') ? readFileSync(join(DIR, 'package.json'), 'utf8') : '';
+        return /inertiajs/.test(composer + pkg) || /"react"/.test(pkg) ? 'laravel-react' : 'laravel-blade';
+    }
     if (['astro.config.mjs', 'astro.config.ts', 'astro.config.js'].some(hay)) return 'astro';
     if (hay('manage.py')) return 'django';
     return 'ninguno';

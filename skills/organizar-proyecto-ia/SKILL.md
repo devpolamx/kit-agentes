@@ -12,7 +12,7 @@ metadata:
 Todo sale del kit público **`devpolamx/kit-agentes`** (plantillas, scripts y las skills `orquestador`, `antes-de-editar`, `verificar`, `traspaso` y `mx-privacy-compliance`). Desde la carpeta del proyecto:
 
 ```
-npx github:devpolamx/kit-agentes instalar --stack laravel-react   # o astro, django, ninguno
+npx github:devpolamx/kit-agentes instalar --stack laravel-react   # o laravel-blade, astro, django, ninguno
 ```
 
 Crea lo que falta, actualiza el bloque «Metodología común» y las skills del kit, y no toca lo que ya escribió el dueño. Esta skill es para lo que el instalador no puede hacer solo: llenar `AGENTS.md` con lo propio del proyecto y alinear proyectos que ya tenían reglas.

@@ -40,7 +40,7 @@ La primera vez, npx pregunta `Ok to proceed? (y)`: responde `y`.
 
 | Opción | Qué hace |
 |---|---|
-| `--stack laravel-react` \| `astro` \| `django` \| `ninguno` | Qué paquete de skills de terceros instalar. Si no lo das, se adivina (`artisan` → Laravel, `astro.config.*` → Astro, `manage.py` → Django). |
+| `--stack laravel-react` \| `laravel-blade` \| `astro` \| `django` \| `ninguno` | Qué paquete de skills de terceros instalar. Si no lo das, se adivina (`artisan` → Laravel: con Inertia o React es `laravel-react`, si no `laravel-blade`; `astro.config.*` → Astro, `manage.py` → Django). |
 | `--nombre "Mi proyecto"` | Nombre para los encabezados. Por omisión, el de la carpeta. |
 | `--dir ruta` | Carpeta del proyecto. Por omisión, la actual. |
 | `--sin-terceros` | No instala skills de terceros (solo muestra los comandos). |
@@ -74,6 +74,7 @@ Las skills de otros autores **no se copian a este repositorio**: `paquetes.json`
 |---|---|
 | `comun` (siempre) | ponytail (`ponytail`, `-review`, `-audit`, `-debt`), `writing-for-interfaces`, `security-review`, `verification-loop` |
 | `laravel-react` | Laravel (patrones, seguridad, TDD, verificación, migraciones, especialista, PHP), React (incluye las de Vercel), TypeScript, Tailwind v4 / shadcn, Vite, diseño de interfaz, accesibilidad |
+| `laravel-blade` | Laravel con Blade o Livewire (sin React): patrones, seguridad, TDD, verificación, migraciones, especialista, PHP, diseño de interfaz y accesibilidad |
 | `astro` | SEO, accesibilidad, diseño de interfaz, Vite, TypeScript, Node |
 | `django` | Seguridad, TDD con pytest-django y factory_boy, Celery y migraciones seguras (everything-claude-code); antipatrones de Python, diseño de tablas en PostgreSQL y `uv` (wshobson/agents) |
 
