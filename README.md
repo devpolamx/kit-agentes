@@ -24,6 +24,7 @@ El kit lo resuelve así:
 | `docs/arquitectura.md` | Mapa del proyecto y decisiones vigentes. |
 | `scripts/bitacora.mjs` (o `.py`) | `check` avisa si la bitácora pasa del tope; `archive` mueve lo viejo sin borrar nada. |
 | `.agents/skills/` y `.claude/skills/` | Skills del kit: `organizar-proyecto-ia`, `orquestador`, `antes-de-editar`, `verificar`, `traspaso` `mx-privacy-compliance` (aviso de privacidad y de cookies conforme a la LFPDPPP para sitios y apps dirigidos a México) y, solo en `laravel-blade`, `livewire` (versiones 2, 3 y 4, equivalencias con React y plan de migración de 2 a 4). |
+| `.claude/agents/` | Si el proyecto tiene los revisores `code-reviewer`, `typescript-reviewer` o `security-reviewer`, les pone modelo y esfuerzo (Sonnet bajo los dos primeros, Sonnet medio el de seguridad) **solo si no los tienen**. Para otro modelo, edita `model` y `effort` en su encabezado. |
 | `.gemini/commands/` | `/antes-de-editar`, `/verificar` y `/traspaso` para Gemini. |
 
 La «Metodología común» incluye una tabla de **qué pruebas correr según el cambio**: nada (solo documentación), solo tipos y compilación (interfaz sin lógica), solo el módulo (lógica de un módulo) o la suite completa una vez (cambios transversales: base de datos, permisos, middleware, dinero, componentes compartidos).

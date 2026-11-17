@@ -207,7 +207,31 @@ if (sinAlinear) {
     }
 }
 
-// ---------- 6. skills de terceros ----------
+// ---------- 6. modelo y esfuerzo de los subagentes revisores ----------
+// Solo agrega `model` y `effort` si el subagente no los tiene: lo que ya decidiste se respeta.
+const REVISORES = {
+    'code-reviewer': { model: 'sonnet', effort: 'low' },
+    'typescript-reviewer': { model: 'sonnet', effort: 'low' },
+    'security-reviewer': { model: 'sonnet', effort: 'medium' },
+};
+for (const [nombre, { model, effort }] of Object.entries(REVISORES)) {
+    const ruta = join(DIR, '.claude', 'agents', `${nombre}.md`);
+    if (!existsSync(ruta)) continue;
+    const texto = readFileSync(ruta, 'utf8');
+    const m = texto.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (!m) continue;
+    const faltan = [];
+    if (!/^model:/m.test(m[1])) faltan.push(`model: ${model}`);
+    if (!/^effort:/m.test(m[1])) faltan.push(`effort: ${effort}`);
+    if (!faltan.length) {
+        log('al día', ruta);
+        continue;
+    }
+    const salto = texto.includes('\r\n') ? '\r\n' : '\n';
+    escribir(ruta, texto.replace(m[0], m[0].replace(/\r?\n---$/, salto + faltan.join(salto) + salto + '---')), 'actualiza');
+}
+
+// ---------- 7. skills de terceros ----------
 const paquetes = JSON.parse(readFileSync(join(KIT, 'paquetes.json'), 'utf8'));
 const elegidas = [...paquetes.comun, ...(paquetes[STACK] ?? [])];
 const porFuente = new Map();
