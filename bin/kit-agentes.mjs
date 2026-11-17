@@ -103,6 +103,9 @@ for (const skill of readdirSync(join(KIT, 'skills'))) {
         const destino = join(DIR, base, skill);
         // Si es un enlace (p. ej. .claude/skills → .agents/skills), ya queda al día con el original.
         if (existsSync(destino) && lstatSync(destino).isSymbolicLink()) continue;
+        // Una skill del kit marcada con «stacks:» solo se instala en esos stacks.
+        const meta = readFileSync(join(KIT, 'skills', skill, 'SKILL.md'), 'utf8').match(/^\s*stacks:\s*(.+)$/m);
+        if (meta && !meta[1].split(/[\s,]+/).includes(STACK)) continue;
         // Una skill propia del proyecto con el mismo nombre no se pisa.
         const suya = join(destino, 'SKILL.md');
         if (existsSync(suya) && !readFileSync(suya, 'utf8').includes('origen: kit-agentes')) {

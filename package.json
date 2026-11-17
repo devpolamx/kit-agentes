@@ -1,6 +1,6 @@
 {
   "name": "kit-agentes",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Organiza un proyecto para trabajar con varios agentes de IA (Claude Code, Gemini, Codex, Copilot): reglas en un solo AGENTS.md, estado, bitácora con tope y skills compartidas.",
   "type": "module",
   "bin": {
